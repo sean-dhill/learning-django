@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 
 monthly_challenges_dict = {
     "january": "Start a journal and write one sentence per day.",
@@ -27,4 +27,10 @@ def monthly_challenges(request, month):
         return HttpResponseNotFound("Month not supported")
 
 def monthly_challenges_by_num(request, month):
-    return HttpResponse(month)
+    months = list(monthly_challenges_dict.keys())
+
+    if month > len(months) or month == 0:
+        return HttpResponseNotFound("Invalid month")
+    
+    redirected_month = months[month - 1]
+    return HttpResponseRedirect("/challenges/" + redirected_month)
