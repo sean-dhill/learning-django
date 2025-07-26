@@ -40,9 +40,10 @@ def index(request):
 def monthly_challenges(request, month):
     try:
         challenge_text = monthly_challenges_dict[month]
-        # This sends a "HTML" file to our browser for it to be interpretted by
-        response_data = f"<h1>{challenge_text}</h1>"
-        return HttpResponse(response_data)
+        return render(request,"challenges/challenge.html", {
+            "text": challenge_text,
+            "month": month.capitalize()
+        })
     except:
         return HttpResponseNotFound("<h1>Month not supported</h1>")
 
