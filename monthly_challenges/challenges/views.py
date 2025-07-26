@@ -20,10 +20,28 @@ monthly_challenges_dict = {
 # Create your views here.
 
 
+def index(request):
+    list_items = ""
+    months = list(monthly_challenges_dict.keys())
+
+    # creates long string of side by side list items
+    for month in months:
+        capitalized_month = month.capitalize()
+        # Creates our path using the specific month
+        month_path = reverse("month-challenge", args=[month])
+        # Creates list item with hyper link
+        list_items += f"<li><a href=\"{month_path}\">{capitalized_month}</a></li>"
+
+    response_data = f"<h1><ul>{list_items}</ul></h1>"
+
+    return HttpResponse(response_data)
+
+
 def monthly_challenges(request, month):
     try:
         challenge_text = monthly_challenges_dict[month]
-        response_data = f"<h1>{challenge_text}</h1>" #This sends a "HTML" file to our browser for it to be interpretted by
+        # This sends a "HTML" file to our browser for it to be interpretted by
+        response_data = f"<h1>{challenge_text}</h1>"
         return HttpResponse(response_data)
     except:
         return HttpResponseNotFound("<h1>Month not supported</h1>")
@@ -36,5 +54,6 @@ def monthly_challenges_by_num(request, month):
         return HttpResponseNotFound("Invalid month")
 
     redirected_month = months[month - 1]
-    redirected_url = reverse("month-challenge", args = [redirected_month]) #Returns for example /challenges/january if month is 1
+    # Returns for example /challenges/january if month is 1
+    redirected_url = reverse("month-challenge", args=[redirected_month])
     return HttpResponseRedirect(redirected_url)
