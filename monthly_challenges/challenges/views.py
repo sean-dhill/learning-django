@@ -17,3 +17,6 @@ def monthly_challenges(request, month):
     else:
         return HttpResponseNotFound("No goal for this month")
     return HttpResponse(monthly_challenge)
+
+def monthly_challenges_by_num(request, month):
+    return HttpResponse(month)
