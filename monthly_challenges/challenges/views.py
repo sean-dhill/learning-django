@@ -21,28 +21,18 @@ monthly_challenges_dict = {
 
 
 def index(request):
-    list_items = ""
     months = list(monthly_challenges_dict.keys())
 
-    # creates long string of side by side list items
-    for month in months:
-        capitalized_month = month.capitalize()
-        # Creates our path using the specific month
-        month_path = reverse("month-challenge", args=[month])
-        # Creates list item with hyper link
-        list_items += f"<li><a href=\"{month_path}\">{capitalized_month}</a></li>"
-
-    response_data = f"<h1><ul>{list_items}</ul></h1>"
-
-    return HttpResponse(response_data)
-
+    return render(request, "challenges/index.html",{
+        "months": months
+    })
 
 def monthly_challenges(request, month):
     try:
         challenge_text = monthly_challenges_dict[month]
         return render(request,"challenges/challenge.html", {
             "text": challenge_text,
-            "month": month.capitalize()
+            "month": month
         })
     except:
         return HttpResponseNotFound("<h1>Month not supported</h1>")
