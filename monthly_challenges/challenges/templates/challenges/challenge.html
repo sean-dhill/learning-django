@@ -6,7 +6,9 @@
 
 
     {%block content%}
-    <h1>{{ month|title }} Challenge</h1>
-    <h2>{{ text }}</h2>
+        {%include "challenges/includes/header.html"%}
+
+        <h1>{{ month|title }} Challenge</h1>
+        <h2>{{ text }}</h2>
     {%endblock%}
    
