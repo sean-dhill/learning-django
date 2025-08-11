@@ -6,21 +6,16 @@
 {% endblock %}
 
 {%block css_files %}
+    <link rel="stylesheet" href = "{% static "blog/post.css" %}" />
     <link rel="stylesheet" href = "{% static "blog/index.css" %}"/>
 {% endblock %}
 
 
 {% block content %}
-    <header id = "main-navigation">
-        <h1><a href = "" >Sean's Blog</a></h1>
-        <nav>
-           <a href = ""> All Posts </a> 
-        </nav>
-    </header>
-
+   
     <section id = "welcome">
         <header>
-            <img src = "" alt = "Sean - The Author Of This Blog" />
+            <img src = "{% static "blog/images/profilepic.jpg" %}" alt = "Sean - The Author Of This Blog" />
             <h2>Sean's Blog</h2>
         </header>
         <p>Hi, I am Sean this is temporary</p>
@@ -30,19 +25,7 @@
         <h2>My Latest Thoughts</h2>
 
         <ul>
-            <li>
-                <artcle class = "post">
-                    <a href = "">
-                        <img src = "" alt = "Mountain Hiking" />
-                        <div class = "post__content">
-                            <h3>Mountain Hiking</h3>
-                            <p>
-                                Nothing like the views hiking in the mountains
-                            </p>
-                        </div>
-                    </a>
-                </article>
-            </li>
+            {% include "blog/includes/post.html"%}
         </ul>
     </section>
 
