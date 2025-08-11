@@ -18,14 +18,16 @@
             <img src = "{% static "blog/images/profilepic.jpg" %}" alt = "Sean - The Author Of This Blog" />
             <h2>Sean's Blog</h2>
         </header>
-        <p>Hi, I am Sean this is temporary</p>
+        <p>Hi, I am Sean, I am just a man... WITH A DREAM!</p>
     </section>
 
     <section id = "latest-posts">
         <h2>My Latest Thoughts</h2>
 
         <ul>
-            {% include "blog/includes/post.html"%}
+            {% for post in posts %}
+                {% include "blog/includes/post.html"%}
+            {% endfor %}
         </ul>
     </section>
 
