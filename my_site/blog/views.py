@@ -17,11 +17,11 @@ class StartingPageView(ListView):
         data = queryset[:3]
         return data
 
-def posts(request):
-    all_posts = Post.objects.all()
-    return render(request, "blog/all-posts.html", {
-        "all_posts": all_posts
-    })
+class AllPostsView(ListView):
+    template_name = "blog/all-posts.html"
+    model = Post
+    ordering = ["-date"]
+    context_object_name = "all_posts"
 
 def post_detail(request, slug):
     identified_post = Post.objects.get(slug = slug)
