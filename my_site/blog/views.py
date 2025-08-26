@@ -27,15 +27,14 @@ class AllPostsView(ListView):
     ordering = ["-date"]
     context_object_name = "all_posts"
 
-class PostDetailView(View): #Django auto finds by slug if we have it set in URL
+class PostDetailView(View): 
  
-
     def get(self, request, slug):
         post = Post.objects.get(slug=slug)
         context = {
             "post": post,
             "post_tags": post.tags.all(),
-            "comment_form": CommentForm
+            "comment_form": CommentForm()
         }
         return render(request, "blog/post-detail.html", context)
 
@@ -52,6 +51,6 @@ class PostDetailView(View): #Django auto finds by slug if we have it set in URL
         context = {
             "post": post,
             "post_tags": post.tags.all(),
-            "comment_form": CommentForm
+            "comment_form": comment_form
         }
         return render(request, "blog/post-detail.html", context)
