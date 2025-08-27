@@ -63,8 +63,8 @@ body {
 
 #read-later button {
   background-color: transparent;
-  border: 1pc solid white;
-  padding: 0.5rem 2rem;
+  border: 1px solid white;
+  padding: 0.5rem 2.5rem;
   font: inherit;
   color: white;
   }
